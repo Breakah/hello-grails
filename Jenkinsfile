@@ -3,9 +3,9 @@
 pipeline {
     agent any
 
-    tools {
-        jdk 'openJDK-11'
-    }
+    //tools {
+      //  jdk 'openJDK-11'
+    //}
 
     options {
         ansiColor('xterm')
@@ -38,11 +38,11 @@ pipeline {
                 sh './gradlew integrationTest'
             }
 	    }
-        post{
-            always{
-                junit 'build/test-results/integrationTest/TEST-*.xml'
-            }
-        }
+        //post{
+          //  always{
+            //    junit 'build/test-results/integrationTest/TEST-*.xml'
+            //}
+        //}
     }
 
         stage('Build') {
