@@ -12,10 +12,10 @@ pipeline {
         stage('Setup'){
             steps{
                 git url:'http://10.250.8.1:8929/root/hello-grails.git',branch:'master' 
-            	//withGradle{
-		  //  sh './gradlew install'
-		//}
-	    }            
+            	withGradle{
+                    sh 'gradle'
+		        }
+	        }
         }
         stage('Test-Unit'){
             steps{
@@ -32,14 +32,15 @@ pipeline {
 
 	stage('Interation-Test'){
 	    steps{
-		withGradle{
-	             sh './gradlew integrationTest'
-		}
+            withGradle{
+                sh './gradlew integrationTest'
+            }
 	    }		
 	}
 
-        //stage('Build') {
-          //  steps {                
+        stage('Build') {
+            steps {
+                echo "Build ...."
             //    withGradle {
               //      sh './gradlew assemble'
                // }
@@ -49,8 +50,9 @@ pipeline {
                 //    archiveArtifacts 'build/libs/*.jar'
                   //  echo ".Jar Guardados en build/libs"
                // }
-           // }            
-       // }
+
+            }
+        }
         stage('Deploy') {
             steps {
                 echo "Deploy...."
@@ -58,6 +60,3 @@ pipeline {
         }
     }
 }
-
-
-
