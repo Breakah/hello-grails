@@ -28,18 +28,30 @@ pipeline {
             }          
         }
 
-	stage('Interation-Test'){
-	    steps{
-            withGradle{
-                sh './gradlew integrationTest'
+        stage('Interation-Test'){
+            steps{
+                withGradle{
+                    sh './gradlew integrationTest'
+                }
             }
-	    }
-        post{
-            always{
-                junit 'build/test-results/integrationTest/TEST-*.xml'
+            post{
+                always{
+                    junit 'build/test-results/integrationTest/TEST-*.xml'
+                }
             }
         }
-    }
+        stage('Codenarc-Test'){
+            steps{
+                withGradle{
+                    sh './gradlew codenarcTest'
+                }
+            }
+            //post{
+              //  always{
+                    junit 'build/test-results/integrationTest/TEST-*.xml'
+                //}
+            //}
+        }
 
         stage('Build') {
             steps {
