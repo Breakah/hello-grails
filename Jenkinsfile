@@ -2,9 +2,7 @@
 
 pipeline {
     agent any
-    tools {
-        jdk 'openJDK-15.0.02'
-    }
+
     options {
         ansiColor('xterm')
     }
@@ -12,9 +10,7 @@ pipeline {
         stage('Setup'){
             steps{
                 git url:'http://10.250.8.1:8929/root/hello-grails.git',branch:'master' 
-            	withGradle{
-                    sh 'gradle'
-		        }
+
 	        }
         }
         stage('Test-Unit'){
