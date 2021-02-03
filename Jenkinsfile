@@ -48,7 +48,7 @@ pipeline {
             }
             //post{
               //  always{
-                    junit 'build/test-results/integrationTest/TEST-*.xml'
+                    //junit 'build/test-results/integrationTest/TEST-*.xml'
                 //}
             //}
         }
