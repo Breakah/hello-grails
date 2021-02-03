@@ -15,7 +15,7 @@ pipeline {
             steps{
                 git url:'http://10.250.8.1:8929/root/hello-grails.git',branch:'master'
                 withGradle{
-                    sh 'gradlew'
+                    sh 'gradle'
                 }
 	        }
         }
