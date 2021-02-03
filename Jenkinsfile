@@ -3,10 +3,6 @@
 pipeline {
     agent any
 
-    //tools {
-      //  jdk 'openJDK-11'
-    //}
-
     options {
         ansiColor('xterm')
     }
@@ -38,11 +34,11 @@ pipeline {
                 sh './gradlew integrationTest'
             }
 	    }
-        //post{
-          //  always{
-            //    junit 'build/test-results/integrationTest/TEST-*.xml'
-            //}
-        //}
+        post{
+            always{
+                junit 'build/test-results/integrationTest/TEST-*.xml'
+            }
+        }
     }
 
         stage('Build') {
@@ -52,11 +48,11 @@ pipeline {
                   sh './gradlew assemble'
                 }
             }
-            post{
-                success{
+            //post{
+              //  success{
                     archiveArtifacts 'build/libs/*.jar'
-               }
-            }
+               //}
+            //}
         }
         stage('Deploy') {
             steps {
