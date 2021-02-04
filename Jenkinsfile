@@ -53,9 +53,9 @@ pipeline {
                             alwaysLinkToLastBuild: false,
                             keepAll: false,
                             reportDir: 'build/reports/codenarc/',
-                            reportFiles: 'main.html',
+                            reportFiles: 'index.html',
                             reportName: 'HTML Report',
-                            reportTitles: 'HTML Report'
+                            reportTitles: 'Coverage Report'
                     ])
                 }
                                              }
