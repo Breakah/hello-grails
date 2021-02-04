@@ -55,7 +55,7 @@ pipeline {
                             reportDir: 'build/reports/codenarc/',
                             reportFiles: 'main.html',
                             reportName: 'HTML Report',
-                            reportTitles: 'HTML Report Codenarc'
+                            reportTitles: 'HTML Report'
                     ])
                 }
                                              }
