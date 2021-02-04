@@ -16,7 +16,8 @@ pipeline {
                         )]) {
                 }
                 withGradle{
-                    sh 'gradle'
+                    sh './gradlew clean'
+                    //sh 'gradle'
                 }
 	        }
         }
@@ -58,7 +59,7 @@ pipeline {
                             alwaysLinkToLastBuild: false,
                             keepAll: false,
                             reportDir: 'build/reports/codenarc/',
-                            reportFiles: 'index.html',
+                            reportFiles: 'main.html',
                             reportName: 'HTML Report',
                             reportTitles: 'Coverage Report'
                     ])
