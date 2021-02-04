@@ -46,11 +46,19 @@ pipeline {
                     sh './gradlew codenarcTest'
                 }
             }
-            //post{
-              //  always{
-                    //junit 'build/test-results/integrationTest/TEST-*.xml'
-                //}
-            //}
+            post{
+                always{
+                    publishHTML([
+                            allowMissing: false,
+                            alwaysLinkToLastBuild: false,
+                            keepAll: false,
+                            reportDir: 'build/reports/codenarc/',
+                            reportFiles: 'main.html',
+                            reportName: 'HTML Report',
+                            reportTitles: ''
+                    ])
+                }
+                                             }
         }
 
         stage('Build') {
