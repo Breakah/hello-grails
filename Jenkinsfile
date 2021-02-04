@@ -10,6 +10,11 @@ pipeline {
         stage('Setup'){
             steps{
                 git url:'http://10.250.8.1:8929/root/hello-grails.git',branch:'master'
+                configFileProvider(
+                        [configFile(
+                                fileId: 'hello-grails-gradle.properties'
+                        )]) {
+                }
                 withGradle{
                     sh 'gradle'
                 }
