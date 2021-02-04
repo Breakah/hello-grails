@@ -10,12 +10,6 @@ pipeline {
         stage('Setup'){
             steps{
                 git url:'http://10.250.8.1:8929/root/hello-grails.git',branch:'master'
-                configFileProvider(
-                        [configFile(
-                                fileId: 'hello-grails-gradle.properties',
-                                targetLocation: 'gradle.properties'
-                        )]) {
-                }
                 withGradle{
                     sh './gradlew clean'
                     //sh 'gradle'
@@ -38,7 +32,13 @@ pipeline {
         stage('Integration-Test'){
             steps{
                 withGradle{
-                    sh './gradlew integrationTest'
+                    configFileProvider(
+                    [configFile(
+                            fileId: 'hello-grails-gradle.properties',
+                            targetLocation: 'gradle.properties'
+                    )]) {
+                        sh './gradlew integrationTest'
+                    }
                 }
             }
             post{
