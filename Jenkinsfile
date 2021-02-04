@@ -34,9 +34,10 @@ pipeline {
             }          
         }
 
-        stage('Interation-Test'){
+        stage('Integration-Test'){
             steps{
                 withGradle{
+                    sh 'gradlew clean'
                     sh './gradlew integrationTest'
                 }
             }
