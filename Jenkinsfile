@@ -9,10 +9,8 @@ pipeline {
     stages {
         stage('Setup'){
             steps{
-                git url:'http://10.250.8.1:8929/root/hello-grails.git',branch:'master'
                 withGradle{
                     sh './gradlew clean'
-                    //sh 'gradle'
                 }
 	        }
         }
@@ -29,17 +27,12 @@ pipeline {
             }          
         }
 
-        stage('Integration-Test'){
+        stage('Integration-Test_sonarqube'){
             steps{
-                withGradle{
-                    configFileProvider(
-                    [configFile(
-                            fileId: 'hello-grails-gradle.properties',
-                            targetLocation: 'gradle.properties'
-                    )]) {
-                        sh './gradlew integrationTest'
-                    }
-                }
+                withSonarQubeEnv(credentialsId: '326817cd-8053-44a1-8b59-15a3b8903c3b', installationName: 'hello-grails') 
+                {                    
+                sh './gradlew integrationTest'              
+                } 
             }
             post{
                 always{
@@ -64,27 +57,8 @@ pipeline {
                             reportName: 'HTML Report',
                             reportTitles: 'Coverage Report'
                     ])
-                }
-                                             }
-        }
-
-        stage('Build') {
-            steps {
-                echo "Build ...."
-                withGradle {
-                  sh './gradlew assemble'
-                }
+                }                                             
             }
-            //post{
-              //  success{
-                    //archiveArtifacts 'build/libs/*.jar'
-               //}
-            //}
-        }
-        stage('Deploy') {
-            steps {
-                echo "Deploy...."
-            }
-        }
+        }       
     }
 }
