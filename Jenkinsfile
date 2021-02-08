@@ -26,7 +26,7 @@ pipeline {
                 }
             }          
         }
-
+/*
         stage('Integration-Test_sonarqube'){
             steps{
                 withSonarQubeEnv(credentialsId: '326817cd-8053-44a1-8b59-15a3b8903c3b', installationName: 'hello-grails') 
@@ -39,7 +39,7 @@ pipeline {
                     junit 'build/test-results/integrationTest/TEST-*.xml'
                 }
             }
-        }
+        }*/
         stage('Codenarc-Test'){
             steps{
                 withGradle{
