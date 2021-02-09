@@ -32,7 +32,7 @@ pipeline {
             steps {
                 withSonarQubeEnv(credentialsId: '326817cd-8053-44a1-8b59-15a3b8903c3b', installationName: 'hello_grails') 
                 {                    
-                sh './gradlew sonarqube             
+                sh './gradlew sonarqube'           
                 }                            
             }            
             post {                
