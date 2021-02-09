@@ -1,8 +1,10 @@
 buildscript {
     repositories {
         maven { url "https://repo.grails.org/grails/core" }
-    }
+	maven { url "https://plugins.gradle.org/m2/"}    
+}
     dependencies {
+	classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.1.1"
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
         classpath "gradle.plugin.com.github.erdi.webdriver-binaries:webdriver-binaries-gradle-plugin:2.2"
         classpath "org.grails.plugins:hibernate5:7.0.4"
@@ -12,7 +14,7 @@ buildscript {
 
 version "0.1"
 group "com"
-
+apply plugin:"org.sonarqube"
 apply plugin:"eclipse"
 apply plugin:"idea"
 apply plugin:"war"
